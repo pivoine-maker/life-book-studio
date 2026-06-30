@@ -1,18 +1,8 @@
 # Life Book Studio
 
-Life Book Studio keeps one product line: generate a complete alternate-life storybook, render it with images and optional video, then publish the daily result through the Worker.
+Life Book Studio 是一个“人生副本故事书”自动生成器：每天选择一个命运设定，让大模型替你完成角色、时代、关键抉择、完整一生剧本、分镜画面、可选视频和发布文档。它不是简单的故事续写，而是把“如果我出生在另一种身份、另一个时代、另一条命运线里，会怎样活完一生？”变成一本可以阅读、收藏和分享的视觉故事书。
 
-## What remains
-
-- `apps/worker` — local daily scheduler and one-shot runner for the full auto-publish chain.
-- `apps/web` — legacy Next.js UI/API workspace kept only for compatibility with shared run storage; the public product flow is the Worker daily publishing chain.
-- `packages/domain` — Life Book domain types plus shared life primitives.
-- `packages/storage` — filesystem store for Life Book runs and artifacts.
-- `packages/model-adapters` — Life Book text, life image, and video adapters.
-- `packages/pipeline` — Life Book generation, rendering, exports, and daily seed orchestration.
-- `packages/media` — ffmpeg helpers for concatenating generated page videos.
-
-Short-drama project workspace and interactive Life Game source routes/components have been removed from the active source tree. Existing `.env`, `data`, logs, `.next`, and `dist` outputs are intentionally left untouched.
+项目核心是一个可自动运行的创作流水线：文本模型负责搭建人生分岔与完整传记，图像模型负责生成角色锚点和故事页插图，视频模型可进一步把页面串成短片，Worker 则把每天的成品导出为 Markdown / HTML / 视频并发布出去。你可以把它当成一个 AI 叙事实验室，也可以把它改造成每日内容栏目、互动故事产品或个人化的“平行人生”生成器。
 
 ## Main flow
 

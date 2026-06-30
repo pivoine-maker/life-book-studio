@@ -35,14 +35,14 @@ function normalizeBaseUrl(value: string): string {
 }
 
 function imageModelConfig() {
-  const apiKey = readEnv("LIFE_IMAGE_API_KEY", "LIFE_MODEL_API_KEY", "MODELHUB_API_KEY", "IMAGE_API_KEY");
+  const apiKey = readEnv("AI_IMAGE_API_KEY");
   return {
     apiKey,
-    provider: readEnv("LIFE_IMAGE_PROVIDER", "IMAGE_PROVIDER") || "ark-seedream",
-    baseUrl: readEnv("LIFE_IMAGE_BASE_URL", "IMAGE_BASE_URL") || DEFAULT_IMAGE_BASE_URL,
-    model: readEnv("LIFE_IMAGE_MODEL", "IMAGE_MODEL") || DEFAULT_IMAGE_MODEL,
-    size: readEnv("LIFE_IMAGE_SIZE", "IMAGE_SIZE") || "2K",
-    timeoutMs: Number.parseInt(readEnv("LIFE_IMAGE_TIMEOUT_MS", "IMAGE_TIMEOUT_MS", "MODEL_TIMEOUT_MS") || "600000", 10),
+    provider: readEnv("AI_IMAGE_PROVIDER") || "openai-compatible-image",
+    baseUrl: readEnv("AI_IMAGE_BASE_URL") || DEFAULT_IMAGE_BASE_URL,
+    model: readEnv("AI_IMAGE_MODEL") || DEFAULT_IMAGE_MODEL,
+    size: readEnv("AI_IMAGE_SIZE") || "2K",
+    timeoutMs: Number.parseInt(readEnv("AI_IMAGE_TIMEOUT_MS") || "600000", 10),
   };
 }
 

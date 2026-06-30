@@ -858,7 +858,7 @@ def build_report(document: MaterialDocument, accepted: list[dict[str, Any]], rej
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Clean novel/script materials without letting the model emit full cleaned text.")
     parser.add_argument("input", help="Path to txt, docx, or xlsx material")
-    parser.add_argument("--api-key", default=os.getenv("MATERIAL_CLEANER_API_KEY") or os.getenv("TEXT_API_KEY"))
+    parser.add_argument("--api-key", default=os.getenv("MATERIAL_CLEANER_API_KEY") or os.getenv("AI_TEXT_API_KEY"))
     parser.add_argument("--endpoint", default=os.getenv("MATERIAL_CLEANER_ENDPOINT", DEFAULT_ENDPOINT))
     parser.add_argument("--api-version", default=os.getenv("MATERIAL_CLEANER_API_VERSION", DEFAULT_API_VERSION))
     parser.add_argument("--model", default=os.getenv("MATERIAL_CLEANER_MODEL", DEFAULT_MODEL))
@@ -880,7 +880,7 @@ def main(argv: list[str]) -> int:
         print(f"input not found: {source_path}", file=sys.stderr)
         return 1
     if not args.api_key:
-        print("missing API key: pass --api-key or set MATERIAL_CLEANER_API_KEY/TEXT_API_KEY", file=sys.stderr)
+        print("missing API key: pass --api-key or set MATERIAL_CLEANER_API_KEY/AI_TEXT_API_KEY", file=sys.stderr)
         return 1
     try:
         document = load_material(source_path, sheet_name=args.sheet, column=args.column, header_name=args.header_name)

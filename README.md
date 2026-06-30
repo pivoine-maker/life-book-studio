@@ -25,7 +25,7 @@ Short-drama project workspace and interactive Life Game source routes/components
 3. Auto-select decisions.
 4. Generate the full script.
 5. Render images.
-6. Unless `LIFE_BOOK_SKIP_VIDEO=true`, render per-page videos and concatenate the final video.
+6. If `LIFE_BOOK_ENABLE_VIDEO` is not set to `false`, render per-page videos and concatenate the final video.
 7. Render Markdown and HTML exports.
 8. Upload Markdown/HTML/video with `lark-cli`.
 9. Send a Feishu bot notification.
@@ -53,9 +53,9 @@ The Worker loads environment variables from:
 
 Important variables include:
 
-- Text model: `LIFE_TEXT_API_KEY`, `LIFE_MODEL_API_KEY`, `MODELHUB_API_KEY`, `TEXT_API_KEY`, `LIFE_TEXT_BASE_URL`, `LIFE_TEXT_MODEL`.
-- Image model: `LIFE_IMAGE_API_KEY`, `LIFE_IMAGE_BASE_URL`, `LIFE_IMAGE_MODEL`, `LIFE_IMAGE_CONCURRENCY`.
-- Video model: `LIFE_VIDEO_API_KEY`, `VIDEO_API_KEY`, `ARK_API_KEY`, `LIFE_VIDEO_MODEL`, `LIFE_VIDEO_CONCURRENCY`, `LIFE_BOOK_SKIP_VIDEO`.
+- Text model: `AI_TEXT_API_KEY`, `AI_TEXT_BASE_URL`, `AI_TEXT_API_VERSION`, `AI_TEXT_MODEL`, `AI_TEXT_MAX_TOKENS`, `AI_TEXT_TIMEOUT_MS`.
+- Image model: `AI_IMAGE_API_KEY`, `AI_IMAGE_BASE_URL`, `AI_IMAGE_MODEL`, `AI_IMAGE_SIZE`, `AI_IMAGE_CONCURRENCY`, `AI_IMAGE_TIMEOUT_MS`.
+- Video model: `AI_VIDEO_API_KEY`, `AI_VIDEO_BASE_URL`, `AI_VIDEO_MODEL`, `AI_VIDEO_MODEL_ALIAS`, `AI_VIDEO_CONCURRENCY`, `AI_VIDEO_DURATION`, `AI_VIDEO_TIMEOUT_MS`, `LIFE_BOOK_ENABLE_VIDEO`.
 - Feishu publish: `FEISHU_FOLDER_TOKEN`, `FEISHU_PARENT_NODE`, `FEISHU_USER_OPEN_ID`, `FEISHU_CHAT_ID`, `FEISHU_SEND_AS`.
 - Storage override: `SHORT_DRAMA_DATA_DIR`.
 

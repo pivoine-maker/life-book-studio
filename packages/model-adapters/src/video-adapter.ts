@@ -66,18 +66,18 @@ function readIntEnv(defaultValue: number, ...keys: string[]): number {
 
 function videoModelConfig() {
   return {
-    apiKey: readEnv("LIFE_VIDEO_API_KEY", "VIDEO_API_KEY", "ARK_API_KEY"),
-    provider: readEnv("LIFE_VIDEO_PROVIDER", "VIDEO_PROVIDER") || "ark-seedance",
-    baseUrl: readEnv("LIFE_VIDEO_BASE_URL", "VIDEO_BASE_URL") || DEFAULT_VIDEO_BASE_URL,
-    model: readEnv("LIFE_VIDEO_MODEL", "VIDEO_MODEL") || DEFAULT_VIDEO_MODEL,
-    alias: readEnv("LIFE_VIDEO_MODEL_ALIAS", "VIDEO_MODEL_ALIAS") || "Seedance 2.0",
-    duration: readIntEnv(DEFAULT_VIDEO_DURATION, "LIFE_VIDEO_DURATION", "VIDEO_DURATION"),
-    ratio: readEnv("LIFE_VIDEO_RATIO", "VIDEO_RATIO") || DEFAULT_VIDEO_RATIO,
-    resolution: readEnv("LIFE_VIDEO_RESOLUTION", "VIDEO_RESOLUTION") || DEFAULT_VIDEO_RESOLUTION,
-    watermark: readBoolEnv(false, "LIFE_VIDEO_WATERMARK", "VIDEO_WATERMARK"),
-    generateAudio: readBoolEnv(true, "LIFE_VIDEO_GENERATE_AUDIO", "VIDEO_GENERATE_AUDIO"),
-    timeoutMs: readIntEnv(30 * 60 * 1000, "LIFE_VIDEO_TIMEOUT_MS", "VIDEO_TIMEOUT_MS"),
-    pollIntervalMs: readIntEnv(10_000, "LIFE_VIDEO_POLL_INTERVAL_MS", "VIDEO_POLL_INTERVAL_MS"),
+    apiKey: readEnv("AI_VIDEO_API_KEY"),
+    provider: readEnv("AI_VIDEO_PROVIDER") || "openai-compatible-video",
+    baseUrl: readEnv("AI_VIDEO_BASE_URL") || DEFAULT_VIDEO_BASE_URL,
+    model: readEnv("AI_VIDEO_MODEL") || DEFAULT_VIDEO_MODEL,
+    alias: readEnv("AI_VIDEO_MODEL_ALIAS") || "Video model",
+    duration: readIntEnv(DEFAULT_VIDEO_DURATION, "AI_VIDEO_DURATION"),
+    ratio: readEnv("AI_VIDEO_RATIO") || DEFAULT_VIDEO_RATIO,
+    resolution: readEnv("AI_VIDEO_RESOLUTION") || DEFAULT_VIDEO_RESOLUTION,
+    watermark: readBoolEnv(false, "AI_VIDEO_WATERMARK"),
+    generateAudio: readBoolEnv(true, "AI_VIDEO_GENERATE_AUDIO"),
+    timeoutMs: readIntEnv(30 * 60 * 1000, "AI_VIDEO_TIMEOUT_MS"),
+    pollIntervalMs: readIntEnv(10_000, "AI_VIDEO_POLL_INTERVAL_MS"),
   };
 }
 
@@ -236,7 +236,7 @@ export function getVideoAdapterPlaceholder(): VideoModelAdapterPlaceholder {
 export class LifeVideoModelAdapter {
   async generateLifeBookPageVideo(input: LifeVideoGenerationInput): Promise<LifeVideoGenerationResult> {
     const config = videoModelConfig();
-    if (!config.apiKey) throw new Error("LIFE_VIDEO_API_KEY or VIDEO_API_KEY is required for life book video generation");
+    if (!config.apiKey) throw new Error("AI_VIDEO_API_KEY is required for life book video generation");
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), config.timeoutMs);
     try {

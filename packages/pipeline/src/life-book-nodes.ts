@@ -144,12 +144,12 @@ async function runLimited<T, R>(items: T[], limit: number, worker: (item: T, ind
 }
 
 function imageConcurrency(): number {
-  const value = Number.parseInt(process.env.LIFE_IMAGE_CONCURRENCY || "2", 10);
+  const value = Number.parseInt(process.env.AI_IMAGE_CONCURRENCY || "2", 10);
   return Number.isFinite(value) && value > 0 ? value : 2;
 }
 
 function videoConcurrency(): number {
-  const value = Number.parseInt(process.env.LIFE_VIDEO_CONCURRENCY || "1", 10);
+  const value = Number.parseInt(process.env.AI_VIDEO_CONCURRENCY || "1", 10);
   return Number.isFinite(value) && value > 0 ? value : 1;
 }
 
@@ -418,7 +418,7 @@ export async function createAutonomousDailyLifeBook(input?: { dateKey?: string; 
   const selectedDecisions = (await lifeBookTextModel.generateAutonomousDecisions({ persona: created.persona, questionnaire: created.questionnaire })).output;
   const scripted = await submitLifeBookDecisions(created.runId, selectedDecisions);
   const rendered = await renderLifeBook(scripted.runId);
-  if (process.env.LIFE_BOOK_SKIP_VIDEO === "true") return rendered;
+  if ((process.env.LIFE_BOOK_ENABLE_VIDEO || "").toLowerCase() === "false") return rendered;
   return renderLifeBookVideos(rendered.runId);
 }
 

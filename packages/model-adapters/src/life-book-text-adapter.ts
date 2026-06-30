@@ -52,14 +52,14 @@ function readEnv(...keys: string[]): string | undefined {
 }
 
 function config() {
-  const apiKey = readEnv("LIFE_TEXT_API_KEY", "LIFE_MODEL_API_KEY", "MODELHUB_API_KEY", "TEXT_API_KEY");
+  const apiKey = readEnv("AI_TEXT_API_KEY");
   return {
     apiKey,
-    baseUrl: readEnv("LIFE_TEXT_BASE_URL", "TEXT_BASE_URL") || DEFAULT_TEXT_BASE_URL,
-    apiVersion: readEnv("LIFE_TEXT_API_VERSION", "TEXT_API_VERSION") || DEFAULT_TEXT_API_VERSION,
-    model: readEnv("LIFE_TEXT_MODEL", "TEXT_MODEL") || DEFAULT_TEXT_MODEL,
-    maxTokens: Number.parseInt(readEnv("LIFE_TEXT_MAX_TOKENS", "TEXT_MAX_TOKENS") || String(DEFAULT_MAX_TOKENS), 10),
-    timeoutMs: Number.parseInt(readEnv("LIFE_TEXT_TIMEOUT_MS", "TEXT_TIMEOUT_MS", "MODEL_TIMEOUT_MS") || "240000", 10),
+    baseUrl: readEnv("AI_TEXT_BASE_URL") || DEFAULT_TEXT_BASE_URL,
+    apiVersion: readEnv("AI_TEXT_API_VERSION") || DEFAULT_TEXT_API_VERSION,
+    model: readEnv("AI_TEXT_MODEL") || DEFAULT_TEXT_MODEL,
+    maxTokens: Number.parseInt(readEnv("AI_TEXT_MAX_TOKENS") || String(DEFAULT_MAX_TOKENS), 10),
+    timeoutMs: Number.parseInt(readEnv("AI_TEXT_TIMEOUT_MS") || "240000", 10),
   };
 }
 
@@ -113,7 +113,7 @@ function extractJson(text: string): string {
 
 async function callText<T>(task: string, prompt: string, inputSummary: string, repair = true): Promise<LifeBookTextResult<T>> {
   const c = config();
-  if (!c.apiKey) throw new Error("LIFE_TEXT_API_KEY or LIFE_MODEL_API_KEY is required");
+  if (!c.apiKey) throw new Error("AI_TEXT_API_KEY is required");
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), c.timeoutMs);
   const started = Date.now();

@@ -4,8 +4,8 @@ Life Book Studio keeps one product line: generate a complete alternate-life stor
 
 ## What remains
 
-- `apps/web` — Next.js UI for `/book-life` and Life Book API routes.
 - `apps/worker` — local daily scheduler and one-shot runner for the full auto-publish chain.
+- `apps/web` — legacy Next.js UI/API workspace kept only for compatibility with shared run storage; the public product flow is the Worker daily publishing chain.
 - `packages/domain` — Life Book domain types plus shared life primitives.
 - `packages/storage` — filesystem store for Life Book runs and artifacts.
 - `packages/model-adapters` — Life Book text, life image, and video adapters.
@@ -14,17 +14,7 @@ Life Book Studio keeps one product line: generate a complete alternate-life stor
 
 Short-drama project workspace and interactive Life Game source routes/components have been removed from the active source tree. Existing `.env`, `data`, logs, `.next`, and `dist` outputs are intentionally left untouched.
 
-## Main flows
-
-### Web Life Book flow
-
-1. Open `/book-life`.
-2. Create a Life Book run from an optional seed.
-3. The text model generates persona, initial state, and a life-decision questionnaire.
-4. The user selects one option per question.
-5. The text model writes the full script and visual page beats.
-6. Rendering creates a protagonist anchor image and then all page images.
-7. The UI polls the run snapshot and can download the run JSON.
+## Main flow
 
 ### Worker daily publishing flow
 
@@ -44,7 +34,6 @@ Short-drama project workspace and interactive Life Game source routes/components
 
 ```bash
 pnpm install
-pnpm dev:web
 pnpm dev:worker
 pnpm -r typecheck
 pnpm -r run --if-present build

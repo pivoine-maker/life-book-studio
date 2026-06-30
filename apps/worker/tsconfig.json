@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@short-drama/pipeline": ["../../packages/pipeline/src/index.ts"],
+      "@short-drama/domain": ["../../packages/domain/src/index.ts"],
+      "@short-drama/media": ["../../packages/media/src/index.ts"],
+      "@short-drama/model-adapters": ["../../packages/model-adapters/src/index.ts"],
+      "@short-drama/storage": ["../../packages/storage/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

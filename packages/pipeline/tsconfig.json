@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@short-drama/domain": ["../domain/src/index.ts"],
+      "@short-drama/media": ["../media/src/index.ts"],
+      "@short-drama/model-adapters": ["../model-adapters/src/index.ts"],
+      "@short-drama/storage": ["../storage/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

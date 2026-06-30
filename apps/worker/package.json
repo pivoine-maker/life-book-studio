@@ -1,0 +1,19 @@
+{
+  "name": "worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "daily:test": "tsx src/index.ts --test",
+    "full:test": "tsx src/index.ts --full-test",
+    "daily:run": "tsx src/index.ts --run-once",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@short-drama/pipeline": "workspace:*",
+    "@short-drama/storage": "workspace:*",
+    "tsx": "^4.21.0"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "noEmit": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@short-drama/domain": [
+        "../../packages/domain/src/index.ts"
+      ],
+      "@short-drama/pipeline": [
+        "../../packages/pipeline/src/index.ts"
+      ],
+      "@short-drama/model-adapters": [
+        "../../packages/model-adapters/src/index.ts"
+      ],
+      "@short-drama/storage": [
+        "../../packages/storage/src/index.ts"
+      ]
+    },
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

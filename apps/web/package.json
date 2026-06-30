@@ -1,0 +1,20 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_OPTIONS=--no-webstorage next dev",
+    "build": "NODE_OPTIONS=--no-webstorage next build",
+    "start": "NODE_OPTIONS=--no-webstorage next start",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@short-drama/domain": "workspace:*",
+    "@short-drama/pipeline": "workspace:*",
+    "@short-drama/storage": "workspace:*",
+    "next": "15.3.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}
